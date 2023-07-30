@@ -34,7 +34,7 @@ h1{
     flex-direction: column;
     gap: 3px;
 }
-
+.equals, .del,
 .button{
     height: 25%;
     border: black solid 1px;
