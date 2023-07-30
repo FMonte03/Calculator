@@ -28,7 +28,7 @@ let var2 = null;
 let var3 = null; 
 //string value of current number variable
 let currentnumstr = ""; 
-
+let operated = false; 
 let operator = ""; 
 
 function changeDisplay(str){
@@ -38,6 +38,7 @@ function changeDisplay(str){
 const nums = document.querySelectorAll('.nums'); 
 nums.forEach(num => {
     num.addEventListener('click', () => {
+        
         currentnumstr += num.getAttribute('data-value'); 
         changeDisplay(currentnumstr);
     }); 
@@ -53,7 +54,13 @@ const operators = document.querySelectorAll('.operators');
 operators.forEach(op => {
     op.addEventListener('click', () => {
         operator = op.getAttribute('data-value');
-        var1 = currentnumstr; 
+        if(operated){
+            var1 = var3; 
+        }
+        else{
+           var1 = currentnumstr;  
+        }
+        
         currentnumstr = "";
         screen.innerHTML = ""; 
         
@@ -64,6 +71,7 @@ function clearAll(){
 var1,var2,var3 = null;
 operator, currentnumstr= "";
 screen.innerHTML = "";
+operated = false; 
 
 }
 
@@ -71,14 +79,7 @@ const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearAll )
 
 //const equals = document.querySelector()
-const func = {
-    '+' : add(var1, var2), 
-    '-' : subtract(), 
-    '*' : multiply(), 
-    '/': divide()
 
-
-}
 
 
 function operate(var1 , var2, ope){
@@ -99,7 +100,8 @@ function operate(var1 , var2, ope){
     }
 
     screen.innerHTML = var3;
-
-
+    var1 = var3; 
+    operated = true; 
+    
 
 }
