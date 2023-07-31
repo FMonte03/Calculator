@@ -6,6 +6,14 @@ body{
 
 }
 
+
+.glow{
+    color: white; 
+    background-color: black;
+
+
+}
+
 .calculator{
     margin-top: 5%;
     height: 45%;

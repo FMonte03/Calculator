@@ -30,6 +30,7 @@ let var3 = null;
 let currentnumstr = ""; 
 let operated = false; 
 let operator = ""; 
+let operated2 = false; 
 
 function changeDisplay(str){
     screen.innerHTML = currentnumstr; 
@@ -38,11 +39,20 @@ function changeDisplay(str){
 const nums = document.querySelectorAll('.nums'); 
 nums.forEach(num => {
     num.addEventListener('click', () => {
-        
+        if(operated2){
+            clearAll(); 
+            operated2 = false; 
+        }
+        console.log(currentOpElement);
+        if(currentOpElement.classList.contains('glow')){
+        currentOpElement.classList.remove('glow');
+        }
         currentnumstr += num.getAttribute('data-value'); 
         changeDisplay(currentnumstr);
     }); 
 });
+
+let currentOpElement = document.querySelector('.operators'); 
 
 const equals = document.querySelector('.equals'); 
 equals.addEventListener('click', () => {
@@ -56,11 +66,14 @@ operators.forEach(op => {
         operator = op.getAttribute('data-value');
         if(operated){
             var1 = var3; 
+            operated2 = false; 
         }
         else{
            var1 = currentnumstr;  
+           
         }
-        
+        currentOpElement = op; 
+        currentOpElement.classList.add('glow');
         currentnumstr = "";
         screen.innerHTML = ""; 
         
@@ -72,6 +85,7 @@ var1,var2,var3 = null;
 operator, currentnumstr= "";
 screen.innerHTML = "";
 operated = false; 
+
 
 }
 
@@ -100,8 +114,7 @@ function operate(var1 , var2, ope){
     }
 
     screen.innerHTML = var3;
-    var1 = var3; 
     operated = true; 
-    
+    operated2 = true;
 
 }
