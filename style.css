@@ -148,12 +148,28 @@ a:visited{
 .calculator{
 width: 50%;
 
-}
 
+}
+h1{
+    font-size: 24px;
+}
 .button{
     width: 10vw;
 }
 
 
+
+}
+
+@media screen and (min-width:425px) and (max-width:900px){
+h1{
+    font-size: 24px;
+}
+.calculator{
+    width: 30%;
+}
+.button{
+    width: 6vw;
+}
 
 }
