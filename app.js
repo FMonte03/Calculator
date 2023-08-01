@@ -1,9 +1,6 @@
 function add(a, b){
 return a+b; 
-
-
 }
-
 
 function subtract(a, b){
     return a-b; 
@@ -11,17 +8,13 @@ function subtract(a, b){
 
 function multiply(a, b){
     return a*b
-
-
 }
 
 function divide(a,b){
     return a/b
-
-
 }
-const screen = document.querySelector(".screen"); 
 
+const screen = document.querySelector(".screen"); 
 
 let var1 = null;
 let var2 = null;
@@ -30,25 +23,31 @@ let var3 = null;
 let currentnumstr = ""; 
 let operated = false; 
 let operator = ""; 
-let operated2 = false; 
+let newoperation = false; 
 
 function changeDisplay(str){
     screen.innerHTML = currentnumstr; 
 }
+const neg = document.querySelector('#neg'); 
+
 
 const nums = document.querySelectorAll('.nums'); 
 nums.forEach(num => {
     num.addEventListener('click', () => {
-        if(operated2){
+        if(newoperation){
             clearAll(); 
-            operated2 = false; 
+            newoperation = false; 
         }
         console.log(currentOpElement);
         if(currentOpElement.classList.contains('glow')){
         currentOpElement.classList.remove('glow');
+        screen.innerHTML = "";
         }
+        
         currentnumstr += num.getAttribute('data-value'); 
         changeDisplay(currentnumstr);
+        if(currentnumstr != ""){
+        neg.disabled = true;}
     }); 
 });
 
@@ -66,7 +65,7 @@ operators.forEach(op => {
         operator = op.getAttribute('data-value');
         if(operated){
             var1 = var3; 
-            operated2 = false; 
+            newoperation = false; 
         }
         else{
            var1 = currentnumstr;  
@@ -75,17 +74,19 @@ operators.forEach(op => {
         currentOpElement = op; 
         currentOpElement.classList.add('glow');
         currentnumstr = "";
-        screen.innerHTML = ""; 
+        neg.disabled = false; 
         
-    })
-})
+    });
+});
 
 function clearAll(){
 var1,var2,var3 = null;
 operator, currentnumstr= "";
 screen.innerHTML = "";
 operated = false; 
-
+newoperation = false;
+currentOpElement.classList.remove('glow');
+neg.disabled = false; 
 
 }
 
@@ -115,6 +116,6 @@ function operate(var1 , var2, ope){
 
     screen.innerHTML = var3;
     operated = true; 
-    operated2 = true;
+    newoperation = true;
 
 }
