@@ -14,6 +14,10 @@ function divide(a,b){
     return a/b
 }
 
+function pow(a,b){
+return a**b;
+}
+
 const screen = document.querySelector(".screen"); 
 
 let var1 = null;
@@ -113,7 +117,9 @@ function operate(var1 , var2, ope){
     else if (ope === '/'){
         var3 = divide(var1, var2); 
     }
-
+    else if (ope == '**'){
+        var3 = pow(var1, var2); 
+    }
     screen.innerHTML = var3;
     operated = true; 
     newoperation = true;
