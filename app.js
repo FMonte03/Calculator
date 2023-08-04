@@ -18,7 +18,7 @@ function pow(a,b){
 return a**b;
 }
 
-screen.orientation.lock("portrait");
+
 
 const screen = document.querySelector(".screen"); 
 
